@@ -1,0 +1,30 @@
+version: '3'
+services:
+  db:
+    image: mariadb:${DBVERSION}
+    volumes:
+      - mysql:/var/lib/mysql
+      - ./gen_db.sh:/docker-entrypoint-initdb.d/gen_db.sh
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DBROOTPWD}
+    env_file:
+      - ./.db.env
+  gogs:
+    image: gogs/gogs
+    ports:
+      - "3000:3000"
+      - "10022:22"
+    volumes:
+      - gogs:/data
+  nextcloud:  
+    image: nextcloud
+    ports:
+      - 8080:80
+    volumes:
+      - nextcloud:/var/www/html
+volumes:
+  gogs:
+  mysql:
+  nextcloud:
