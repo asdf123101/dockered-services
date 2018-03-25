@@ -26,9 +26,8 @@ services:
     image: gogs/gogs
     depends_on:
       - db
-    expose:
-      - "3000"
     ports:
+      - "3000:3000"
       - "8080:22"
     volumes:
       - gogs:/data
@@ -36,8 +35,8 @@ services:
     image: nextcloud
     depends_on:
       - db
-    expose:
-      - 80
+    ports:
+      - "8888:80"
     volumes:
       - nextcloud:/var/www/html
 volumes:
