@@ -1,11 +1,10 @@
 This is a template for setting up gogs and/or nextcloud on a server.
-Before calling `docker-compose`, create a file `.env` that constains 
-`DBROOTPWD` and `DBVERSION` environment variables. These two variables
-correspond to Mariadb root password and version (tested on 10.).
+Before calling `docker-compose`, change `DBROOTPWD` variable in `.env`
+to your own database password and `server_name` in `nginx.conf` to your
+own doamin name.
 
 `gen_db.sh` creates necessary databases if they don't exit during database
 initialization. User name and password are the same as the database name.
-Modify `.db.env` to change database name.
 
 ```bash
 docker-compose up -d 			# deploy gogs and nextcloud  services

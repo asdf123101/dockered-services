@@ -16,9 +16,11 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=${DBROOTPWD}
     env_file:
-      - ./.db.env
+      - ./.env
   gogs:
     image: gogs/gogs
+    depends_on:
+      - db
     expose:
       - "3000"
       - "22"
@@ -28,6 +30,8 @@ services:
       - gogs:/data
   nextcloud:  
     image: nextcloud
+    depends_on:
+      - db
     ports:
       - 8080:80
     volumes:

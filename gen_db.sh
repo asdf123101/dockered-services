@@ -8,9 +8,9 @@ function create_db_if_non {
 	LIST="${1//\"}"
 	for NAME in $LIST
 	do
-		if [ -z "$(mysql -u root -p "$DBROOTPWD" -e "show databases like '$NAME'")" ]; then
+		if [ -z "$(mysql -u root -p${DBROOTPWD} -e "show databases like '$NAME'")" ]; then
 			echo "create $NAME"
-			mysql -uroot -proot -e "create database $NAME; GRANT ALL PRIVILEGES ON $NAME.* TO '$NAME'@'%' IDENTIFIED BY '$NAME'"
+			mysql -uroot -p${DBROOTPWD}  -e "create database $NAME; GRANT ALL PRIVILEGES ON $NAME.* TO '$NAME'@'%' IDENTIFIED BY '$NAME'"
 		fi
 	done
 }
