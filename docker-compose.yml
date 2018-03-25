@@ -4,15 +4,20 @@ services:
     image: nginx:alpine
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./ssl.conf:/etc/nginx/ssl.conf
+      - nginx-certs:/etc/nginx/ssl
     ports:
-      - "80:80"
+      - "443:443"
+    depends_on:
+      - gogs
+      - nextcloud
   db:
     image: mariadb:${DBVERSION}
     volumes:
       - mysql:/var/lib/mysql
       - ./gen_db.sh:/docker-entrypoint-initdb.d/gen_db.sh
-    ports:
-      - 3306:3306
+    expose:
+      - 3306
     environment:
       - MYSQL_ROOT_PASSWORD=${DBROOTPWD}
     env_file:
@@ -23,20 +28,21 @@ services:
       - db
     expose:
       - "3000"
-      - "22"
     ports:
-      - "3000:3000"
+      - "8080:22"
     volumes:
       - gogs:/data
   nextcloud:  
     image: nextcloud
     depends_on:
       - db
-    ports:
-      - 8080:80
+    expose:
+      - 80
     volumes:
       - nextcloud:/var/www/html
 volumes:
   gogs:
   mysql:
   nextcloud:
+  nginx-certs:
+    external: true
