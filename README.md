@@ -43,7 +43,7 @@ and nextcloud `domain-name/nextcloud`.
 to `doamin-name/gogs`. Alternatively, change `ROOT_URL` in `/path-to-gogs-volume/gogs/conf/app.ini`.
   - Nextcloud: Add `'overwritewebroot' => '/nextcloud'` in `/path-to-nextcloud-volume/config/config.php`. In addition, set `'overwrite.cli.url'` and `'htaccess.RewriteBase'` to reflect this change. See [here](https://docs.nextcloud.com/server/9/admin_manual/configuration_server/config_sample_php_parameters.html) for more information.
 
-The path of these services can be changed in the `location` section of `nginx.conf`. Remember
+ The path of these services can be changed in the `location` section of `nginx.conf`. Remember
 to repeat the above setup to reflect the path change.
 
 - After the initial setup and tested the services, the opened ports, `8888` and `3000` on host, can be turned to `expose`, leaving them only accessible to the reverse proxy server. The ssh port `8080`, however, should be kept only if ssh access to gos is required.
