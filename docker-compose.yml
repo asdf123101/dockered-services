@@ -29,6 +29,7 @@ services:
       - ./.env
   gogs:
     image: gogs/gogs
+    restart: always
     depends_on:
       - db
     ports:
@@ -37,7 +38,8 @@ services:
     volumes:
       - gogs:/data
   nextcloud:  
-    image: nextcloud
+    image: nextclou
+    restart: alwaysd
     depends_on:
       - db
     ports:
