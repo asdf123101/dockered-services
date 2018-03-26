@@ -13,7 +13,7 @@ certbot/certbot certonly --webroot -w=/data/letsencrypt \
 ```
 `$SITE_LOCATION` is the path to your website that is served on this machine.
 If you have other valid ssl certificates, simply copy the to 
-`/paht/to/certs/volumn/live/${DOMAINNAME}/` and edit `nginx.conf` to use
+`/paht-to-certs-volumn/live/${DOMAINNAME}/` and edit `nginx.conf` to use
 your private key and certificate.
 
 For enhanced security, change `DBROOTPWD` in `.env`
@@ -40,8 +40,8 @@ should be set correctly. By default, gogs will be served under `domain-name/gogs
 and nextcloud `domain-name/nextcloud`. 
 
   - Gogs: The webroot can be changed during initial setup. Simply change the `Application URL`
-to `doamin-name/gogs`. Alternatively, change `ROOT_URL` in `path-to-gogs-volume/gogs/conf/app.ini`.
-  - Nextcloud: Add `'overwritewebroot' => '/nextcloud'` in `path-to-nextcloud-volume/config/config.php`. In addition, set `'overwrite.cli.url'` and `'htaccess.RewriteBase'` to reflect this change. See [here](https://docs.nextcloud.com/server/9/admin_manual/configuration_server/config_sample_php_parameters.html) for more information.
+to `doamin-name/gogs`. Alternatively, change `ROOT_URL` in `/path-to-gogs-volume/gogs/conf/app.ini`.
+  - Nextcloud: Add `'overwritewebroot' => '/nextcloud'` in `/path-to-nextcloud-volume/config/config.php`. In addition, set `'overwrite.cli.url'` and `'htaccess.RewriteBase'` to reflect this change. See [here](https://docs.nextcloud.com/server/9/admin_manual/configuration_server/config_sample_php_parameters.html) for more information.
 
 The path of these services can be changed in the `location` section of `nginx.conf`. Remember
 to repeat the above setup to reflect the path change.
