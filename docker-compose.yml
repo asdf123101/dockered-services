@@ -2,8 +2,9 @@ version: '3'
 services:
   server:
     image: nginx:alpine
+    restart: always
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx.conf:/etc/nginx/nginx_temp.conf
       - ./ssl.conf:/etc/nginx/ssl.conf
       - nginx-certs:/etc/nginx/ssl
     ports:
@@ -11,8 +12,12 @@ services:
     depends_on:
       - gogs
       - nextcloud
+    environment:
+      - DOMAIN=example.ca
+    command: /bin/sh -c "envsubst '$${DOMAIN}' < /etc/nginx/nginx_temp.conf > /etc/nginx/nginx.conf && nginx -g 'daemon off;'"
   db:
     image: mariadb:${DBVERSION}
+    restart: always
     volumes:
       - mysql:/var/lib/mysql
       - ./gen_db.sh:/docker-entrypoint-initdb.d/gen_db.sh
@@ -39,6 +44,9 @@ services:
       - "8888:80"
     volumes:
       - nextcloud:/var/www/html
+  redis:
+    image: redis
+    restart: always
 volumes:
   gogs:
   mysql:
