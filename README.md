@@ -29,9 +29,9 @@ You can edit this script to customize your database settings.
 
 - Services can be called individually:
 ```bash
-docker-compose up -d 						# deploy gogs and nextcloud  services
-docker-compose up -d gogs				# deploy gogs
-docker-compose up -d nextcloudb	# deploy nextcloud
+docker-compose up -d 			# deploy gogs and nextcloud  services
+docker-compose up -d gogs		# deploy gogs
+docker-compose up -d nextcloudb		# deploy nextcloud
 ```
 
 - Nextcloud and gogs are accessible on host port `8888` and `3000` during the initial
