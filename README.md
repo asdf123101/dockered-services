@@ -58,3 +58,8 @@ to repeat the above steps to reflect path change.
 	'port' => 6379,
 )
 ```
+
+## Media services
+Media services folder contains `aria2` with `yaaw` front end and `plex`. 
+No extra configuration is required. Just remember to change aria2 secret 
+and plex claim token in the configure file.
