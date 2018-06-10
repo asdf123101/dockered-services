@@ -4,7 +4,7 @@ it assumes a docker volumn with ssl certificates is present. If you don't
 have one, use following commands to obtain certificates from
 Let's Encrypt.
 ```bash
-docker column create nginx-certs
+docker volumn create nginx-certs
 docker run -it --rm --name certbot \
 -v nginx-certs:/etc/letsencrypt \
 -v $SITE_LOCATION:/data/letsencrypt \
